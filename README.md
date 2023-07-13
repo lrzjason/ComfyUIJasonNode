@@ -1,7 +1,7 @@
 # ComfyUI Jason Node
 Some Custom Node I made for comfyui
 
-SDXLMixSampler
+# SDXLMixSampler
 The concept is to make one node to use both base+refiner like simple sampler.
 Let me explains some parameter.
 total_steps: total steps would run with this sampler. default is 20.
