@@ -18,6 +18,9 @@ and I think it could done by 1 node.
 # Installation
 put .py files into ComfyUI\custom_nodes
 
+# License
+Distributed under the GNU General Public License v3.0. See LICENSE for more information.
+
 # Acknowledgements
 Thanks to the creators of ComfyUI for creating a flexible and powerful UI. Another special thanks to ⛧ Sytan ⛧ and others who created the wonderful workflow for SDXL
 https://github.com/SytanSD/Sytan-SDXL-ComfyUI
