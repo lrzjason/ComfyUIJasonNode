@@ -1,4 +1,4 @@
-# ComfyUIJasonNode
+# ComfyUI Jason Node
 Some Custom Node I made for comfyui
 
 SDXLMixSampler
