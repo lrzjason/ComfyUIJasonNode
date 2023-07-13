@@ -17,3 +17,13 @@ and I think it could done by 1 node.
 
 # Installation
 put .py files into ComfyUI\custom_nodes
+
+# Acknowledgements
+Thanks to the creators of ComfyUI for creating a flexible and powerful UI. Another special thanks to ⛧ Sytan ⛧ and others who created the wonderful workflow for SDXL
+https://github.com/SytanSD/Sytan-SDXL-ComfyUI
+
+civitai:
+https://civitai.com/models/108594?modelVersionId=116911
+
+To support my work, you could buy me a coffee
+https://www.buymeacoffee.com/JasonAICreator
