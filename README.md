@@ -14,3 +14,6 @@ The return_with_leftover_noise would be false at the last refiner node.
 While would I create this node?
 I was testing around generating text and I found it helps to generating text in multiple loop of the base+refiner process
 and I think it could done by 1 node.
+
+# Installation
+put .py files into ComfyUI\custom_nodes
