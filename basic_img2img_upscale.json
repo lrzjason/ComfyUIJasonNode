@@ -1,0 +1,2176 @@
+{
+  "last_node_id": 187,
+  "last_link_id": 639,
+  "nodes": [
+    {
+      "id": 123,
+      "type": "Note",
+      "pos": [
+        -734,
+        -1270
+      ],
+      "size": {
+        "0": 408.1121826171875,
+        "1": 560.35400390625
+      },
+      "flags": {
+        "pinned": false
+      },
+      "order": 0,
+      "mode": 0,
+      "title": "Basic Prompting Guide",
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Prompting: For the linguistic prompt, you should try to explain the image you want in a single sentence with proper grammar. For example:\n\nA photograph of a (subject) in a (location) at (time)\n\nthen you use the second text field to strengthen that prompt with a few carefully selected tags that will help, such as:\n\ncinematic, bokeh, photograph, (features about subject)\n\nFull prompt example:\n\nLinguistic: A cinematic photograph of a pretty woman with blonde hair and blue eyes in a park at sunset\n\nSupporting: clouds, nature, bokeh, f1.8, cinematic lighting, entered composition\n\nPhotographic tips\n\n1. Try and use words or entities that tie into realistic imagery, such as National geographic, Vogue, ethnographic, portrait, and similar words\n\n2. Do not use words like \"realism\" or \"realistic\" when prompting for photographs, as they are associated with art styles that depict \"realistic\" things, and such will weight towards traditional or digital art\n\n3. Feel free to use compositional words, such as \"centered subject\" or \"(object) to the side\", this can help a lot for achieving different and interesting results\n\n4. I recommend not going over 6 on the positive aesthetic score for the refiner when going for realism, I find that the higher you go, the more your images are likely to go into the direction of aesthetic paintings and \n\n"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 138,
+      "type": "PrimitiveNode",
+      "pos": [
+        550,
+        -800
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            534
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "ascore",
+            "config": [
+              "FLOAT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 1000,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Negative A Score",
+      "properties": {},
+      "widgets_values": [
+        1,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 10,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -306,
+        -624
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            549,
+            560
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            550,
+            557,
+            566
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "title": "Base Model",
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_0.9.safetensors"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 77,
+      "type": "PrimitiveNode",
+      "pos": [
+        6,
+        -1231
+      ],
+      "size": {
+        "0": 291.2458190917969,
+        "1": 302.58148193359375
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            470
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "text_l",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_L"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Supporting Terms",
+      "properties": {},
+      "widgets_values": [
+        "sketch, hand draw, grayscale, solo, single dog"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 78,
+      "type": "PrimitiveNode",
+      "pos": [
+        -310,
+        -1230
+      ],
+      "size": {
+        "0": 302.9015197753906,
+        "1": 300.84906005859375
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            434,
+            478
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Linguistic Positive",
+      "properties": {},
+      "widgets_values": [
+        "A drawing of a husky sitting in a field of snow with mountains off in the background at sunset with a cloudy sky"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 137,
+      "type": "PrimitiveNode",
+      "pos": [
+        329,
+        -799
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            518,
+            573
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "ascore",
+            "config": [
+              "FLOAT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 1000,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Positive A Score",
+      "properties": {},
+      "widgets_values": [
+        20,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 101,
+      "type": "PrimitiveNode",
+      "pos": [
+        552,
+        -935
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            552,
+            577
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "cfg",
+            "config": [
+              "FLOAT",
+              {
+                "default": 8,
+                "min": 0,
+                "max": 100
+              }
+            ]
+          }
+        }
+      ],
+      "title": "CFG",
+      "properties": {},
+      "widgets_values": [
+        7.5,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 152,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        462.5557821960447,
+        -51.81475115966797
+      ],
+      "size": {
+        "0": 400,
+        "1": 289.9999694824219
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 566,
+          "slot_index": 0
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": 568,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": 567,
+          "widget": {
+            "name": "text_l",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_L"
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            569
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Positive Base",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        4096,
+        4096,
+        0,
+        0,
+        4096,
+        4096,
+        "A cinematic photo of a huskysitting in a field of snow with mountains off in the background at sunset with a cloudy sky",
+        "photo, clouds, nature, bokeh, f2.1, cinematic lighting, entered composition"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 153,
+      "type": "CLIPTextEncodeSDXLRefiner",
+      "pos": [
+        453.5557821960447,
+        -13.814751159667964
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 571,
+          "slot_index": 0
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 572,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          },
+          "slot_index": 1
+        },
+        {
+          "name": "ascore",
+          "type": "FLOAT",
+          "link": 573,
+          "widget": {
+            "name": "ascore",
+            "config": [
+              "FLOAT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 1000,
+                "step": 0.01
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            574
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Positive Refiner",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXLRefiner"
+      },
+      "widgets_values": [
+        20,
+        4096,
+        4096,
+        "A cinematic photo of a huskysitting in a field of snow with mountains off in the background at sunset with a cloudy sky"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -307,
+        -484
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            546,
+            561
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            547,
+            558,
+            571
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            556,
+            582
+          ],
+          "slot_index": 2
+        }
+      ],
+      "title": "Refiner Model",
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_refiner_0.9.safetensors"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 165,
+      "type": "Upscale Model Loader",
+      "pos": [
+        727,
+        498
+      ],
+      "size": {
+        "0": 315,
+        "1": 78
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            594
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MODEL_NAME_TEXT",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Upscale Model Loader"
+      },
+      "widgets_values": [
+        "4x-UltraSharp.pth"
+      ]
+    },
+    {
+      "id": 161,
+      "type": "SaveImage",
+      "pos": [
+        1668,
+        498
+      ],
+      "size": {
+        "0": 404.3124694824219,
+        "1": 454.1047668457031
+      },
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 634
+        }
+      ],
+      "title": "Refiner Output",
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 66,
+      "type": "PrimitiveNode",
+      "pos": [
+        327,
+        -936
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            551
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Seed",
+      "properties": {},
+      "widgets_values": [
+        72800371481934,
+        "randomize"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 156,
+      "type": "SaveImage",
+      "pos": [
+        1650.5557821960447,
+        -72.81475115966796
+      ],
+      "size": {
+        "0": 404.3124694824219,
+        "1": 454.1047668457031
+      },
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 581
+        }
+      ],
+      "title": "Refiner Output",
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 81,
+      "type": "CLIPTextEncodeSDXLRefiner",
+      "pos": [
+        268,
+        -455
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 547
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 494,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "ascore",
+          "type": "FLOAT",
+          "link": 534,
+          "widget": {
+            "name": "ascore",
+            "config": [
+              "FLOAT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 1000,
+                "step": 0.01
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            540,
+            570
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Negative Refiner",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXLRefiner"
+      },
+      "widgets_values": [
+        1,
+        4096,
+        4096,
+        "Deformed, unrealistic, bad quality, grainy, noisy, plastic, hazy, low contrast"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 75,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        278,
+        -594
+      ],
+      "size": {
+        "0": 400,
+        "1": 289.9999694824219
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 557,
+          "slot_index": 0
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": 434,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": 470,
+          "widget": {
+            "name": "text_l",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_L"
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            541
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Positive Base",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        4096,
+        4096,
+        0,
+        0,
+        4096,
+        4096,
+        "A drawing of a husky sitting in a field of snow with mountains off in the background at sunset with a cloudy sky",
+        "sketch, hand draw, grayscale, solo, single dog"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 120,
+      "type": "CLIPTextEncodeSDXLRefiner",
+      "pos": [
+        283,
+        -514
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 558,
+          "slot_index": 0
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 478,
+          "widget": {
+            "name": "text",
+            "config": [
+              "STRING",
+              {
+                "multiline": true
+              }
+            ]
+          },
+          "slot_index": 1
+        },
+        {
+          "name": "ascore",
+          "type": "FLOAT",
+          "link": 518,
+          "widget": {
+            "name": "ascore",
+            "config": [
+              "FLOAT",
+              {
+                "default": 6,
+                "min": 0,
+                "max": 1000,
+                "step": 0.01
+              }
+            ]
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            539
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Positive Refiner",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXLRefiner"
+      },
+      "widgets_values": [
+        20,
+        4096,
+        4096,
+        "A drawing of a husky sitting in a field of snow with mountains off in the background at sunset with a cloudy sky"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 82,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        276,
+        -557
+      ],
+      "size": {
+        "0": 400,
+        "1": 289.9999694824219
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 550,
+          "slot_index": 0
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": 302,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": 476,
+          "widget": {
+            "name": "text_l",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_L"
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            542,
+            565
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Negative Base",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        4096,
+        4096,
+        0,
+        0,
+        4096,
+        4096,
+        "Deformed, unrealistic, bad quality, grainy, noisy, plastic, hazy, low contrast",
+        "Deformed, unrealistic, bad quality, grainy, noisy, plastic, hazy, low contrast"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 43,
+      "type": "PrimitiveNode",
+      "pos": [
+        -308,
+        -891
+      ],
+      "size": {
+        "0": 609.0048828125,
+        "1": 172.01026916503906
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            302,
+            476,
+            494
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Fundamental Negative",
+      "properties": {},
+      "widgets_values": [
+        "Deformed, unrealistic, bad quality, grainy, noisy, plastic, hazy, low contrast"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 150,
+      "type": "PrimitiveNode",
+      "pos": [
+        -322.4442178039553,
+        -82.81475115966796
+      ],
+      "size": {
+        "0": 302.9015197753906,
+        "1": 300.84906005859375
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            568,
+            572
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "text_g",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_G"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Linguistic Positive",
+      "properties": {},
+      "widgets_values": [
+        "A cinematic photo of a huskysitting in a field of snow with mountains off in the background at sunset with a cloudy sky"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 164,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        1194,
+        498
+      ],
+      "size": {
+        "0": 241.79998779296875,
+        "1": 46
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 594
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 635
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            634
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageUpscaleWithModel"
+      }
+    },
+    {
+      "id": 155,
+      "type": "VAEDecode",
+      "pos": [
+        1483.5557821960447,
+        -72.81475115966796
+      ],
+      "size": {
+        "0": 140,
+        "1": 46
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 580
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 582
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            581,
+            635
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1152.7541735272218,
+        -629
+      ],
+      "size": {
+        "0": 140,
+        "1": 46
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 555
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 556
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            491
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 122,
+      "type": "SaveImage",
+      "pos": [
+        1323.7541735272218,
+        -630
+      ],
+      "size": {
+        "0": 404.3124694824219,
+        "1": 454.1047668457031
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 491
+        }
+      ],
+      "title": "Refiner Output",
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 148,
+      "type": "LatentByRatio",
+      "pos": [
+        348,
+        -1223
+      ],
+      "size": {
+        "0": 416.63165283203125,
+        "1": 108.59053802490234
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            559
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LatentByRatio"
+      },
+      "widgets_values": [
+        "SDXL 1024",
+        "16:9",
+        1
+      ]
+    },
+    {
+      "id": 154,
+      "type": "PrimitiveNode",
+      "pos": [
+        403,
+        68
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            576
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Seed",
+      "properties": {},
+      "widgets_values": [
+        567491524500914,
+        "randomize"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 157,
+      "type": "PrimitiveNode",
+      "pos": [
+        406,
+        185
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 14,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            583,
+            636
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "mixing_steps",
+            "config": [
+              "INT",
+              {
+                "default": 20,
+                "min": 20,
+                "step": 20
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Total Steps",
+      "properties": {},
+      "widgets_values": [
+        80,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 115,
+      "type": "PrimitiveNode",
+      "pos": [
+        330,
+        -1071
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            553,
+            639
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "mixing_steps",
+            "config": [
+              "INT",
+              {
+                "default": 20,
+                "min": 20,
+                "step": 20
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Total Steps",
+      "properties": {},
+      "widgets_values": [
+        40,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 151,
+      "type": "PrimitiveNode",
+      "pos": [
+        -6,
+        -81
+      ],
+      "size": {
+        "0": 291.2458190917969,
+        "1": 302.58148193359375
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            567
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "text_l",
+            "config": [
+              "STRING",
+              {
+                "multiline": true,
+                "default": "CLIP_L"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Supporting Terms",
+      "properties": {},
+      "widgets_values": [
+        "photo, clouds, nature, bokeh, f2.1, cinematic lighting, entered composition"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 146,
+      "type": "SDXLMixSampler",
+      "pos": [
+        788,
+        -628
+      ],
+      "size": [
+        308.3200378417969,
+        452.67999267578125
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "base_model",
+          "type": "MODEL",
+          "link": 549
+        },
+        {
+          "name": "ref_model",
+          "type": "MODEL",
+          "link": 546
+        },
+        {
+          "name": "base_positive",
+          "type": "CONDITIONING",
+          "link": 541
+        },
+        {
+          "name": "base_negative",
+          "type": "CONDITIONING",
+          "link": 542
+        },
+        {
+          "name": "refiner_positive",
+          "type": "CONDITIONING",
+          "link": 539
+        },
+        {
+          "name": "refiner_negative",
+          "type": "CONDITIONING",
+          "link": 540
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 559
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 551,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": 552,
+          "widget": {
+            "name": "cfg",
+            "config": [
+              "FLOAT",
+              {
+                "default": 8,
+                "min": 0,
+                "max": 100
+              }
+            ]
+          }
+        },
+        {
+          "name": "total_steps",
+          "type": "INT",
+          "link": 639,
+          "widget": {
+            "name": "total_steps",
+            "config": [
+              "INT",
+              {
+                "default": 20,
+                "min": 20,
+                "max": 10000,
+                "step": 20
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            555,
+            575
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SDXLMixSampler"
+      },
+      "widgets_values": [
+        437550617761222,
+        "randomize",
+        40,
+        65,
+        20,
+        7.5,
+        "ddim",
+        "ddim_uniform",
+        1
+      ]
+    },
+    {
+      "id": 149,
+      "type": "SDXLMixSampler",
+      "pos": [
+        1127,
+        -73
+      ],
+      "size": [
+        263.7199401855469,
+        443.5999450683594
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "base_model",
+          "type": "MODEL",
+          "link": 560
+        },
+        {
+          "name": "ref_model",
+          "type": "MODEL",
+          "link": 561
+        },
+        {
+          "name": "base_positive",
+          "type": "CONDITIONING",
+          "link": 569
+        },
+        {
+          "name": "base_negative",
+          "type": "CONDITIONING",
+          "link": 565
+        },
+        {
+          "name": "refiner_positive",
+          "type": "CONDITIONING",
+          "link": 574
+        },
+        {
+          "name": "refiner_negative",
+          "type": "CONDITIONING",
+          "link": 570
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 575
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "link": 576,
+          "widget": {
+            "name": "noise_seed",
+            "config": [
+              "INT",
+              {
+                "default": 0,
+                "min": 0,
+                "max": 18446744073709552000
+              }
+            ]
+          }
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": 577,
+          "widget": {
+            "name": "cfg",
+            "config": [
+              "FLOAT",
+              {
+                "default": 8,
+                "min": 0,
+                "max": 100
+              }
+            ]
+          }
+        },
+        {
+          "name": "total_steps",
+          "type": "INT",
+          "link": 636,
+          "widget": {
+            "name": "total_steps",
+            "config": [
+              "INT",
+              {
+                "default": 20,
+                "min": 20,
+                "max": 10000,
+                "step": 20
+              }
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            580
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SDXLMixSampler"
+      },
+      "widgets_values": [
+        182836864693042,
+        "randomize",
+        80,
+        10,
+        20,
+        7.5,
+        "ddim",
+        "ddim_uniform",
+        0.9
+      ]
+    }
+  ],
+  "links": [
+    [
+      302,
+      43,
+      0,
+      82,
+      1,
+      "STRING"
+    ],
+    [
+      434,
+      78,
+      0,
+      75,
+      1,
+      "STRING"
+    ],
+    [
+      470,
+      77,
+      0,
+      75,
+      2,
+      "STRING"
+    ],
+    [
+      476,
+      43,
+      0,
+      82,
+      2,
+      "STRING"
+    ],
+    [
+      478,
+      78,
+      0,
+      120,
+      1,
+      "STRING"
+    ],
+    [
+      491,
+      8,
+      0,
+      122,
+      0,
+      "IMAGE"
+    ],
+    [
+      494,
+      43,
+      0,
+      81,
+      1,
+      "STRING"
+    ],
+    [
+      518,
+      137,
+      0,
+      120,
+      2,
+      "FLOAT"
+    ],
+    [
+      534,
+      138,
+      0,
+      81,
+      2,
+      "FLOAT"
+    ],
+    [
+      539,
+      120,
+      0,
+      146,
+      4,
+      "CONDITIONING"
+    ],
+    [
+      540,
+      81,
+      0,
+      146,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      541,
+      75,
+      0,
+      146,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      542,
+      82,
+      0,
+      146,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      546,
+      4,
+      0,
+      146,
+      1,
+      "MODEL"
+    ],
+    [
+      547,
+      4,
+      1,
+      81,
+      0,
+      "CLIP"
+    ],
+    [
+      549,
+      10,
+      0,
+      146,
+      0,
+      "MODEL"
+    ],
+    [
+      550,
+      10,
+      1,
+      82,
+      0,
+      "CLIP"
+    ],
+    [
+      551,
+      66,
+      0,
+      146,
+      7,
+      "INT"
+    ],
+    [
+      552,
+      101,
+      0,
+      146,
+      8,
+      "FLOAT"
+    ],
+    [
+      553,
+      115,
+      0,
+      146,
+      9,
+      "INT"
+    ],
+    [
+      555,
+      146,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      556,
+      4,
+      2,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      557,
+      10,
+      1,
+      75,
+      0,
+      "CLIP"
+    ],
+    [
+      558,
+      4,
+      1,
+      120,
+      0,
+      "CLIP"
+    ],
+    [
+      559,
+      148,
+      0,
+      146,
+      6,
+      "LATENT"
+    ],
+    [
+      560,
+      10,
+      0,
+      149,
+      0,
+      "MODEL"
+    ],
+    [
+      561,
+      4,
+      0,
+      149,
+      1,
+      "MODEL"
+    ],
+    [
+      565,
+      82,
+      0,
+      149,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      566,
+      10,
+      1,
+      152,
+      0,
+      "CLIP"
+    ],
+    [
+      567,
+      151,
+      0,
+      152,
+      2,
+      "STRING"
+    ],
+    [
+      568,
+      150,
+      0,
+      152,
+      1,
+      "STRING"
+    ],
+    [
+      569,
+      152,
+      0,
+      149,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      570,
+      81,
+      0,
+      149,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      571,
+      4,
+      1,
+      153,
+      0,
+      "CLIP"
+    ],
+    [
+      572,
+      150,
+      0,
+      153,
+      1,
+      "STRING"
+    ],
+    [
+      573,
+      137,
+      0,
+      153,
+      2,
+      "FLOAT"
+    ],
+    [
+      574,
+      153,
+      0,
+      149,
+      4,
+      "CONDITIONING"
+    ],
+    [
+      575,
+      146,
+      0,
+      149,
+      6,
+      "LATENT"
+    ],
+    [
+      576,
+      154,
+      0,
+      149,
+      7,
+      "INT"
+    ],
+    [
+      577,
+      101,
+      0,
+      149,
+      8,
+      "FLOAT"
+    ],
+    [
+      580,
+      149,
+      0,
+      155,
+      0,
+      "LATENT"
+    ],
+    [
+      581,
+      155,
+      0,
+      156,
+      0,
+      "IMAGE"
+    ],
+    [
+      582,
+      4,
+      2,
+      155,
+      1,
+      "VAE"
+    ],
+    [
+      583,
+      157,
+      0,
+      149,
+      9,
+      "INT"
+    ],
+    [
+      594,
+      165,
+      0,
+      164,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      634,
+      164,
+      0,
+      161,
+      0,
+      "IMAGE"
+    ],
+    [
+      635,
+      155,
+      0,
+      164,
+      1,
+      "IMAGE"
+    ],
+    [
+      636,
+      157,
+      0,
+      149,
+      9,
+      "INT"
+    ],
+    [
+      639,
+      115,
+      0,
+      146,
+      9,
+      "INT"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Image",
+      "bounding": [
+        1132,
+        -701,
+        620,
+        539
+      ],
+      "color": "#444"
+    },
+    {
+      "title": "First Step Samplers",
+      "bounding": [
+        762,
+        -700,
+        366,
+        537
+      ],
+      "color": "#444"
+    },
+    {
+      "title": "Models, Encoders, and LoRAs",
+      "bounding": [
+        -318,
+        -699,
+        1074,
+        435
+      ],
+      "color": "#444"
+    },
+    {
+      "title": "Prompting",
+      "bounding": [
+        -318,
+        -1300,
+        626,
+        590
+      ],
+      "color": "#444"
+    },
+    {
+      "title": "Gen Settings",
+      "bounding": [
+        318,
+        -1301,
+        451,
+        592
+      ],
+      "color": "#444"
+    },
+    {
+      "title": "Image To Image",
+      "bounding": [
+        -333,
+        -154,
+        2413,
+        548
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "Upscale Image",
+      "bounding": [
+        708,
+        418,
+        1376,
+        554
+      ],
+      "color": "#A88"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
