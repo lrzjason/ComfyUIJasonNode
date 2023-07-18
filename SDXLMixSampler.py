@@ -25,6 +25,7 @@ class SDXLMixSampler:
                         "refiner_positive": ("CONDITIONING", ),
                         "refiner_negative": ("CONDITIONING", ),
                         "latent_image": ("LATENT", ),
+                        "denoise": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 1.0, "step": 0.1}),
                         # "add_noise": (["enable", "disable"], ),
                         # "start_at_step": ("INT", {"default": 0, "min": 0, "max": 10000}),
                         # "end_at_step": ("INT", {"default": 10000, "min": 0, "max": 10000}),
@@ -35,20 +36,22 @@ class SDXLMixSampler:
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "SDXLMixSampler"
 
-    CATEGORY = "JASON_SDXL"
+    CATEGORY = "JNode"
 
-    def SDXLMixSampler(self, base_model,ref_model,noise_seed,total_steps,base_steps_percentage,mixing_steps,cfg,sampler_name,scheduler,base_positive,base_negative,refiner_positive,refiner_negative,latent_image):
+    def SDXLMixSampler(self, base_model,ref_model,noise_seed,total_steps,base_steps_percentage,mixing_steps,cfg,sampler_name,scheduler,base_positive,base_negative,refiner_positive,refiner_negative,latent_image,denoise):
         loop = 1
         result = ()
         out = latent_image.copy()
         disable_noise = False
+        print(f"total_steps: {int(total_steps)}")
+        print(f"mixing_steps: {int(mixing_steps)}")
         if total_steps > mixing_steps:
             loop = total_steps / mixing_steps
+        print(f"Total loop: {int(loop)}")
         for i in range(int(loop)):
-            print(f"loop {i}")
             force_full_denoise = False
             # add_noise only at the first base modal
-            if i == 0:
+            if i == 0 and denoise == 1.0:
                 disable_noise = False
             # base 0,13
             base_start_at_step = int(i * mixing_steps)
@@ -56,7 +59,7 @@ class SDXLMixSampler:
 
             print(f"noise_seed: {noise_seed},total_steps: {total_steps},cfg: {cfg},sampler_name: {sampler_name},scheduler: {scheduler},disable_noise: {disable_noise},base_start_at_step: {base_start_at_step},base_end_at_step: {base_end_at_step},force_full_denoise: {force_full_denoise}")
             # print('latent_image',latent_image)
-            base_result = nodes.common_ksampler(base_model, noise_seed, total_steps, cfg, sampler_name, scheduler, base_positive, base_negative, latent_image, denoise=1, disable_noise=disable_noise, 
+            base_result = nodes.common_ksampler(base_model, noise_seed, total_steps, cfg, sampler_name, scheduler, base_positive, base_negative, latent_image, denoise=denoise, disable_noise=disable_noise, 
                                            start_step=base_start_at_step, last_step=base_end_at_step, force_full_denoise=force_full_denoise)
             # print('base_result',base_result)
             latent_image = base_result[0]
@@ -72,7 +75,7 @@ class SDXLMixSampler:
             refiner_start_at_step = int(base_end_at_step)
             refiner_end_at_step = int((i+1) * mixing_steps)
             print(f"noise_seed: {noise_seed},total_steps: {total_steps},cfg: {cfg},sampler_name: {sampler_name},scheduler: {scheduler},disable_noise: {disable_noise},refiner_start_at_step: {refiner_start_at_step},refiner_end_at_step: {refiner_end_at_step},force_full_denoise: {force_full_denoise}")
-            refiner_result = nodes.common_ksampler(ref_model, noise_seed, total_steps, cfg, sampler_name, scheduler, refiner_positive, refiner_negative, latent_image, denoise=1, disable_noise=disable_noise, 
+            refiner_result = nodes.common_ksampler(ref_model, noise_seed, total_steps, cfg, sampler_name, scheduler, refiner_positive, refiner_negative, latent_image, denoise=denoise, disable_noise=disable_noise, 
                                            start_step=refiner_start_at_step, last_step=refiner_end_at_step, force_full_denoise=force_full_denoise)
             latent_image = refiner_result[0]
             
@@ -88,5 +91,5 @@ NODE_CLASS_MAPPINGS = {
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "JASON_SDXL": "SDXLMixSampler"
+    "JNode": "SDXLMixSampler"
 }
