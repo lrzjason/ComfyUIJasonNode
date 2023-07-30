@@ -27,6 +27,7 @@ class SDXLMixSampler:
                         "refiner_negative": ("CONDITIONING", ),
                         "latent_image": ("LATENT", ),
                         "denoise": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 1.0, "step": 0.1}),
+                        "final_only": (["yes", "no"], {"default": "yes"}),
                         # "return_base_latent": (["disable", "enable"], {"default": "disable"}),
                         # "return_each_loop": (["disable", "enable"], {"default": "enable"}),
                         # "add_noise": (["enable", "disable"], ),
@@ -41,13 +42,16 @@ class SDXLMixSampler:
 
     CATEGORY = "JNode"
 
-    def SDXLMixSampler(self, base_model,ref_model,noise_seed,total_loop,base_steps_percentage,mixing_steps,cfg,sampler_name,scheduler,base_positive,base_negative,refiner_positive,refiner_negative,latent_image,denoise):
+    def SDXLMixSampler(self, base_model,ref_model,noise_seed,total_loop,base_steps_percentage,mixing_steps,cfg,sampler_name,scheduler,base_positive,base_negative,refiner_positive,refiner_negative,latent_image,denoise,final_only):
         # loop = 1
         out = latent_image.copy()
         result = None
 
         print(f"Total loop: {int(total_loop)}")
         for loop_index in range(int(total_loop)):
+            if final_only == "yes":
+                if loop_index != int(total_loop)-1:
+                    continue
             loop = loop_index+1
             print(f"loop: {int(loop)}")
             disable_noise = False
